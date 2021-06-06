@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.dicoding.nutrientcontentsrecognizer.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/take_photo"
+        android:name="com.dicoding.nutrientcontentsrecognizer.ui.dashboard.CameraFragment"
+        android:label="@string/take_photo"
+        tools:layout="@layout/fragment_camera" />
+
+    <fragment
+        android:id="@+id/choose_image"
+        android:name="com.dicoding.nutrientcontentsrecognizer.ui.notifications.GalleryFragment"
+        android:label="@string/choose_image"
+        tools:layout="@layout/fragment_gallery" />
+</navigation>
