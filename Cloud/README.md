@@ -1,6 +1,21 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Cloud
-Test
+Cloud Computing team focusing on deploying the ML model and the app/service, and also connecting beetwen them so the app can do the food image prediction using the deployed ML model on the cloud and returning information back to the user.
+
+For see our web service visit here: [NutriCheck](https://intelik-nutrient-detection-app.et.r.appspot.com/) 
+
+For the back service that we plan to implement it on android you can see the example for the implementation using the Postman app [here](backservice-example.JPG).
+
+<!-- TOC -->
+- [About The Cloud](#about-the-cloud)
+- [Getting Started](#getting-started)
+  * [Creating Cloud Storage Bucket](#creating-cloud-storage-bucket)
+  * [Creating Cloud Datastore (Firestore)](#creating-cloud-datastore--firestore-)
+  * [Importing Data to Firestore](#importing-data-to-firestore)
+  * [Deploying ML to Cloud AI Platform](#deploying-ml-to-cloud-ai-platform)
+  * [Create Service Account Key](#create-service-account-key)
+  * [Deploy Web Service to Cloud App Engine](#deploy-web-service-to-cloud-app-engine)
+  * [Deploy Backservice to Cloud Run](#deploy-backservice-to-cloud-run)
 
 <!-- GETTING STARTED -->
 ## Getting Started
