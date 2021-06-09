@@ -6,7 +6,6 @@ import os
 import json
 import googleapiclient.discovery
 from google.api_core.client_options import ClientOptions
-
 from google.cloud import firestore
 
 # Setup environment credentials (you'll need to change these)
