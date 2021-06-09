@@ -80,3 +80,67 @@ Test
    ML runtime version **2.3**
 6. Click **Browe** and choose the ML model folder that you upload before (intelik-model-classes)
 7. Leave other default, then **SAVE**
+
+### Create Service Account Key
+1. From GCP, go to **IAM & Admin > Service Accounts** then **CREATE SERVICE ACCOUT**
+2. Enter service account name then **CREATE AND CONTINUE**
+3. For **Grant this service account access to project**, we will use the key for **accesing AI Platform Model** and **Read data from Firebase**
+4. Skip the 3rd step, click **DONE**
+5. After Service Account created, click the Service Account name then go to tab **KEY**
+6. Click **ADD KEY** then **Create new key**
+7. For key type choose **JSON**, click **CREATE**
+8. Key will be downloaded, save it for auth later
+
+### Deploy Web Service to Cloud App Engine
+For web service, use Streamlite (python based) for the server. This web will provide user to predict food image using the deployed ML model on AI Platform, get the information from the Cloud Firestore and output the information including the food name, nutrient facts and diabet save status.
+1. Upload [intelik-app-webservice](intelik-app-webservice) to cloud env
+2. Open [app.py](intelik-app-webservice/app.py) and customize this line
+```sh
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "access-firestore.json" # change with the service account key 
+PROJECT = "intelik-nutrient-detection-app" # GCP project ID
+REGION = "us-central1" # GCP region 
+```
+3. Open [utils.py](intelik-app-webservice/utils.py) and change the `model_name` with you deployed ML model name
+```sh
+classes_and_models = {
+    "model": {
+        "classes": base_classes,
+        "model_name": "intelik_model" #Change this to you ML model name
+    }
+}
+```
+4. For deploying, in the folder already created [Makefile](intelik-app-webservice/Makefile) for the command
+```sh
+make gcloud-deploy
+```
+
+### Deploy Backservice to Cloud Run
+For android backservice, using Flask (python based) for the server. service provide API for predict image. App only do the http request with image included to the '/predict' end-point. The server will predict the food image using the deployed ML model on AI Platform, get the information from the Cloud Firestore and return the information back to the app as JSON data.
+1. Upload [intelik-app-backservice](intelik-app-backservice) to cloud env
+2. Open [mail.py](intelik-app-backservice/mail.py) and customize this line
+```sh
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "access-firestore.json" # change with the service account key 
+PROJECT = "intelik-nutrient-detection-app" # GCP project ID
+REGION = "us-central1" # GCP region 
+```
+also change `model_name` with you deployed ML model name
+```sh
+classes_and_models = {
+    "model": {
+        "classes": base_classes,
+        "model_name": "intelik_model" #Change this to you ML model name
+    }
+}
+```
+3. Before deploy, build your container image using Cloud Build, by running the following command from the directory containing the Dockerfile:
+```sh
+gcloud builds submit --tag gcr.io/PROJECT-ID/name-of-the-app
+```
+4. For deploying, type this on Cloud Shell
+```sh
+gcloud run deploy --image gcr.io/PROJECT-ID/name-of-the-app
+```
+   If prompted to enable the API, Reply **y** to enable.
+   You will be prompted for the service name: press Enter to accept the default name, `name-of-the-app`
+   You will be prompted for region: select the region of your choice, for example `us-central1`
+   You will be prompted to **allow unauthenticated invocations**: respond **y**
