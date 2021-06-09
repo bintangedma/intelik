@@ -11,13 +11,16 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.dicoding.nutrientcontentsrecognizer.R
 import com.dicoding.nutrientcontentsrecognizer.databinding.FragmentCameraBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_camera.*
 import android.Manifest
 
 class CameraFragment : Fragment() {
 
     private lateinit var fragmentCameraFragment: FragmentCameraBinding
+    private var bitmapResult: Bitmap? = null
 
     override fun onCreateView(
             inflater: LayoutInflater,
