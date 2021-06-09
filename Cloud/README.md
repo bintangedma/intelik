@@ -58,3 +58,12 @@ Test
    npm install @google-cloud/firestore
    npm install csv-parse
    ```
+6. Create the scrip
+   ```sh
+   touch nutrientsDataImport.js
+   ```
+   You cas see the full script here: [nutrientsDataImport.js](nutrientsDataImport.js)
+7. Upload the [nutrients.csv](nutrients.csv) to cloud, then run the script
+   ```sh
+   node nutrientsDataImport.js nutrients.csv
+   ```
