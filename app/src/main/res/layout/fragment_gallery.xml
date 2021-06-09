@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.GalleryFragment"
+    tools:context=".ui.gallery.GalleryFragment"
     android:orientation="vertical">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -72,15 +72,17 @@
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginTop="480dp">
-        <androidx.fragment.app.FragmentContainerView
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager_detail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            
-        </androidx.fragment.app.FragmentContainerView>
+            android:layout_height="match_parent" >
 
 
+        </androidx.viewpager2.widget.ViewPager2>
     </androidx.core.widget.NestedScrollView>
 
 
