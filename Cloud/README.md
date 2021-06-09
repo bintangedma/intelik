@@ -67,3 +67,16 @@ Test
    ```sh
    node nutrientsDataImport.js nutrients.csv
    ```
+
+### Deploying ML to Cloud AI Platform
+1. Upload  and unzip [intelik-model-classes.zip](../ML/intelik-model-classes.zip) to the bucket that have been created before
+2. From GCP go to **AI Platform > Models**
+3. Create **NEW MODEL**, pesonalize the option
+4. After model created, click the model then click **NEW VERSION**
+5. Insert the name (ex. v001), choose **Pre-built Container**
+   Python version **3.7**
+   Framework **TensorFlow**
+   Framework version **2.3.1**
+   ML runtime version **2.3**
+6. Click **Browe** and choose the ML model folder that you upload before (intelik-model-classes)
+7. Leave other default, then **SAVE**
